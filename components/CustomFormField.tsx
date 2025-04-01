@@ -1,6 +1,13 @@
+import { Control, FieldValues, Path } from "react-hook-form";
+
+import {
+  FormField,
+  FormControl,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Control, Controller, FieldValues, Path } from "react-hook-form";
-import { FormControl, FormItem, FormLabel, FormMessage } from "./ui/form";
 
 interface CustomFormFieldProps<T extends FieldValues> {
   control: Control<T>;
@@ -18,7 +25,7 @@ const CustomFormField = <T extends FieldValues>({
   type = "text",
 }: CustomFormFieldProps<T>) => {
   return (
-    <Controller
+    <FormField
       control={control}
       name={name}
       render={({ field }) => (
