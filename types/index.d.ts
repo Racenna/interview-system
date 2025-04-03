@@ -19,3 +19,14 @@ interface Feedback {
   finalAssessment: string;
   // TODO - fields
 }
+
+interface TechIcon {
+  techName: string;
+  techAlias: string;
+  url: string;
+}
+
+interface CompanyIcon {
+  companyName: string;
+  url: string;
+}

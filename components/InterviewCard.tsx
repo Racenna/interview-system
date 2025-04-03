@@ -1,9 +1,14 @@
-import React from "react";
 import dayjs from "dayjs";
-import placeholderImage from "@/assets/react.svg";
-import Image from "next/image";
-import { Button } from "./ui/button";
+import { getRandomCompanyLogo } from "@/lib/utils";
+
+import TechIcons from "./TechIcons";
+import { CalendarDays, Star } from "lucide-react";
+
 import Link from "next/link";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import CustomAvatar from "@/components/CustomAvatar";
 
 interface InterviewCardProps {
   interviewId?: string;
@@ -16,7 +21,7 @@ interface InterviewCardProps {
 
 const InterviewCard = ({
   interviewId,
-  userId,
+  // userId,
   role,
   type,
   techStack,
@@ -27,55 +32,58 @@ const InterviewCard = ({
   const formattedDate = dayjs(
     feedback?.createdAt || createdAt || Date.now()
   ).format("MMM D, YYYY");
+  const { companyName, url: companyLogoUrl } = getRandomCompanyLogo();
 
   return (
-    <div className="border-2 m-1 w-[360px] max-sm:w-full">
-      <div>
-        <div>
-          <div>
-            <p>{normalizedType}</p>
-          </div>
-          <Image
-            src={placeholderImage}
-            alt="placeholder"
-            width={45}
-            height={45}
-            className="rounded-full border-2"
+    <Card className="sm:w-[360px] mb-7 last:mb-0 sm:last:mb-7 sm:mr-7">
+      <CardContent>
+        <div className="flex flex-row items-start justify-between">
+          <CustomAvatar
+            className="w-16 h-16 "
+            src={companyLogoUrl}
+            name={companyName}
           />
-
-          <h3>{role} interview</h3>
-
-          <div>
-            <div>
-              (calendar img) <p>{formattedDate}</p>
-            </div>
-
-            <div>
-              (star/rating img) <p>{feedback?.totalScore || "N/A"}/100</p>
-            </div>
-          </div>
-          <p className="line-clamp-2">
-            {feedback?.finalAssessment ||
-              "You haven't taken the interview yet. Take it now to improve your skills."}
-          </p>
+          <Badge variant="secondary" className="text-base h-7">
+            {normalizedType}
+          </Badge>
         </div>
-        <div>
-          <p>Tech Icons</p>
+
+        <h3 className="mt-5 text-2xl font-semibold capitalize">
+          {role} Interview
+        </h3>
+
+        <div className="flex gap-5 mt-5">
+          <div className="flex items-center gap-2">
+            <CalendarDays /> <p>{formattedDate}</p>
+          </div>
+
+          <div className="flex items-center gap-2">
+            <Star /> <p>{feedback?.totalScore || "---"}/100</p>
+          </div>
+        </div>
+
+        <p className="line-clamp-2 mt-5">
+          {feedback?.finalAssessment ||
+            "You haven't taken the interview yet. Take it now to improve your skills."}
+        </p>
+
+        <div className="flex justify-between items-center mt-5">
+          <TechIcons techStack={techStack} />
 
           <Button asChild>
             <Link
               href={
                 feedback
                   ? `/interview/${interviewId}/feedback`
-                  : `/interview/${interviewId}`
+                  : `/interview/${interviewId}/`
               }
             >
               {feedback ? "Check Feedback" : "View Interview"}
             </Link>
           </Button>
         </div>
-      </div>
-    </div>
+      </CardContent>
+    </Card>
   );
 };
 

@@ -1,25 +1,35 @@
-import InterviewCard from "@/components/InterviewCard";
-import { Button } from "@/components/ui/button";
-import { dummyInterviews } from "@/constants";
 import Link from "next/link";
-import React from "react";
+
+import { Button } from "@/components/ui/button";
+import InterviewCard from "@/components/InterviewCard";
+import { dummyInterviews } from "@/constants/dummyData";
+import { Card, CardContent } from "@/components/ui/card";
 
 const page = () => {
   return (
     <>
-      <section>
-        <div className="border-2">
-          <h2>Interview card title</h2>
-          <p className="text-lg">Some big text...</p>
-          <Button asChild>
-            <Link href="/interview">Text to start interview</Link>
-          </Button>
-        </div>
+      <section className="mb-12">
+        <Card className="w-full sm:max-w-lg">
+          <CardContent>
+            <h2 className="text-2xl font-semibold leading-none">
+              Get Interview with AI
+            </h2>
+            <p className="my-3">
+              Practice interview questions and get instant feedback.
+            </p>
+            <Button asChild className="w-full sm:w-auto">
+              <Link href="/interview">Start an Interview</Link>
+            </Button>
+          </CardContent>
+        </Card>
       </section>
-      <section>
-        <h2>Your interviews card title</h2>
 
-        <div className="flex flex-wrap border-4">
+      <section className="mb-12">
+        <h2 className="mb-7 text-2xl font-semibold">
+          Your interviews card title
+        </h2>
+
+        <div className="flex flex-wrap items-stretch w-full flex-col lg:flex-row">
           {dummyInterviews.map((interview) => (
             <InterviewCard key={interview.id} {...interview} />
           ))}
@@ -27,9 +37,11 @@ const page = () => {
         </div>
       </section>
       <section>
-        <h2>Take an interview card title</h2>
+        <h2 className="mb-7 text-2xl font-semibold">
+          Take an interview card title
+        </h2>
 
-        <div className="border-4">
+        <div className="flex flex-wrap items-stretch w-full flex-col lg:flex-row">
           {dummyInterviews.map((interview) => (
             <InterviewCard key={interview.id} {...interview} />
           ))}
