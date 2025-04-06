@@ -1,5 +1,11 @@
 type FormType = "sign-in" | "sign-up";
 
+interface User {
+  id: string;
+  name: string;
+  email: string;
+}
+
 interface Interview {
   id: string;
   userId: string;
@@ -29,4 +35,16 @@ interface TechIcon {
 interface CompanyIcon {
   companyName: string;
   url: string;
+}
+
+interface SignUpParams {
+  uid: string;
+  name: string;
+  email: string;
+  password: string;
+}
+
+interface SignInParams {
+  email: string;
+  idToken: string;
 }
