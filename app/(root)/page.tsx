@@ -5,7 +5,7 @@ import InterviewCard from "@/components/InterviewCard";
 import { dummyInterviews } from "@/constants/dummyData";
 import { Card, CardContent } from "@/components/ui/card";
 
-const page = () => {
+const Page = () => {
   return (
     <>
       <section className="mb-12">
@@ -52,4 +52,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

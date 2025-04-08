@@ -16,6 +16,7 @@ interface Interview {
   questions: string[];
   finalized: boolean;
   createdAt: string;
+  companyLogo: CompanyIcon;
 }
 
 interface Feedback {

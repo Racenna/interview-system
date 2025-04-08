@@ -39,7 +39,7 @@ const InterviewCard = ({
       <CardContent>
         <div className="flex flex-row items-start justify-between">
           <CustomAvatar
-            className="w-16 h-16 "
+            className="size-16"
             src={companyLogoUrl}
             name={companyName}
           />
