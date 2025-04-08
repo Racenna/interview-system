@@ -1,4 +1,4 @@
-export const dummyInterviews: Interview[] = [
+export const dummyInterviews: Omit<Interview, "companyLogo">[] = [
   {
     id: "1",
     userId: "user1",
