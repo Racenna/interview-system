@@ -28,7 +28,7 @@ export async function POST(request: Request) {
       role,
       type,
       level,
-      techStack: techstack.split(","),
+      techStack: techstack.split(", "),
       questions: JSON.parse(questions),
       userId: userid,
       finalized: true,

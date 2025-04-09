@@ -21,10 +21,17 @@ interface Interview {
 
 interface Feedback {
   id: string;
+  interviewId: string;
   totalScore: number;
-  createdAt: string;
+  categoryScores: {
+    name: string;
+    score: number;
+    comment: string;
+  }[];
+  strengths: string[];
+  areasForImprovement: string[];
   finalAssessment: string;
-  // TODO - fields
+  createdAt: string;
 }
 
 interface TechIcon {
@@ -38,6 +45,11 @@ interface CompanyIcon {
   url: string;
 }
 
+interface RouteParams {
+  params: Promise<Record<string, string>>;
+  searchParams: Promise<Record<string, string>>;
+}
+
 interface SignUpParams {
   uid: string;
   name: string;
@@ -48,4 +60,21 @@ interface SignUpParams {
 interface SignInParams {
   email: string;
   idToken: string;
+}
+
+interface GetLatestInterviewsParams {
+  userId: string;
+  limit?: number;
+}
+
+interface CreateFeedbackParams {
+  interviewId: string;
+  userId: string;
+  transcript: { role: string; content: string }[];
+  feedbackId?: string;
+}
+
+interface GetFeedbackByInterviewIdParams {
+  interviewId: string;
+  userId: string;
 }

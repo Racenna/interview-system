@@ -1,5 +1,4 @@
 import dayjs from "dayjs";
-import { getRandomCompanyLogo } from "@/lib/utils";
 
 import TechIcons from "./TechIcons";
 import { CalendarDays, Star } from "lucide-react";
@@ -9,6 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import CustomAvatar from "@/components/CustomAvatar";
+import { getFeedbackByInterviewId } from "@/lib/actions/general.action";
 
 interface InterviewCardProps {
   interviewId?: string;
@@ -17,22 +17,27 @@ interface InterviewCardProps {
   type: string;
   techStack: string[];
   createdAt?: string;
+  companyLogo: CompanyIcon;
 }
 
-const InterviewCard = ({
+const InterviewCard = async ({
   interviewId,
-  // userId,
+  userId,
   role,
   type,
   techStack,
   createdAt,
+  companyLogo,
 }: InterviewCardProps) => {
-  const feedback = null as Feedback | null;
+  const feedback =
+    interviewId && userId
+      ? await getFeedbackByInterviewId({ interviewId, userId })
+      : null;
   const normalizedType = /mix/gi.test(type) ? "Mixed" : type;
   const formattedDate = dayjs(
     feedback?.createdAt || createdAt || Date.now()
   ).format("MMM D, YYYY");
-  const { companyName, url: companyLogoUrl } = getRandomCompanyLogo();
+  const { companyName, url: companyLogoUrl } = companyLogo;
 
   return (
     <Card className="sm:w-[360px] mb-7 last:mb-0 sm:last:mb-7 sm:mr-7">

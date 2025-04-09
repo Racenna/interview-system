@@ -13,8 +13,8 @@ export function cn(...inputs: ClassValue[]) {
 
 export const getTechIcons = (techStack: string[]): TechIcon[] => {
   const iconURLs = techStack.map((techName) => {
-    const alias = techAlias[techName.toLowerCase()];
-    const versionSvg = techVersionsSvg[alias][0]; // mostly "original" or "plain"
+    const alias = techAlias[techName.toLowerCase()] ?? "";
+    const versionSvg = techVersionsSvg[alias]?.[0] ?? ""; // mostly "original" or "plain"
 
     return {
       techName,
