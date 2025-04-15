@@ -14,7 +14,9 @@ const Layout = async ({ children }: { children: ReactNode }) => {
   return (
     <div className="px-4 py-8 sm:px-16">
       <nav className="flex justify-between items-center h-10 mb-8">
-        <Link href="/">(LINK) Practice job interview with AI</Link>
+        <h3>
+          <Link href="/">Practice job interview with AI</Link>
+        </h3>
         <CustomAvatar name="test user" />
       </nav>
       {children}

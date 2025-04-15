@@ -9,9 +9,9 @@ const AuthLayout = async ({ children }: { children: ReactNode }) => {
   if (isUserAuthenticated) redirect("/");
 
   return (
-    <div className="flex-center min-h-svh flex-col bg-muted">
+    <div className="flex-center min-h-svh flex-col">
       <div className="flex flex-col w-full max-w-sm gap-6">
-        <p className="text-center">Practice job interview with AI</p>
+        <h1 className="text-center">Practice job interview with AI</h1>
         {children}
       </div>
     </div>
